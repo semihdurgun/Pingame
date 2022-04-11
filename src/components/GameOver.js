@@ -23,7 +23,7 @@ function GameOver() {
                     Tebrikler {
                     currAttempt.attempt + 1
                 }
-                    .&nbsp;aramada bildiniz.</h3>
+                    .&nbsp;aramada bildiniz!</h3>
             )
         } </div>
     );

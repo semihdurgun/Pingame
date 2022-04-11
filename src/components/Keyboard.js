@@ -13,7 +13,7 @@ function Keyboard() {
         "8",
         "9",
         "DELETE",
-        "0",
+        "",
         "ENTER"
     ];
     const {

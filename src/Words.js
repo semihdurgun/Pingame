@@ -51,7 +51,11 @@ export const hintDefault = [
     "",
 ]
 export const generateNumber = (digit) => {
-    var number = Math.floor(Math.random() * 9 * 10 ** digit) + 10 ** digit;
-    console.log(number);
-    return number;
+    var arr = [];
+    while(arr.length < digit){
+        var r = Math.floor(Math.random() * 9) + 1;
+        if(arr.indexOf(r) === -1) arr.push(r);
+    }
+    console.log(arr.join(""));
+    return arr.join("");
 };

@@ -5,7 +5,7 @@ import {boardDefault, generateNumber, hintDefault} from "./Words";
 import React, {useState, createContext, useEffect} from "react";
 import GameOver from "./components/GameOver";
 import Hint from "./components/Hint";
-
+import Swal from "sweetalert2";
 export const AppContext = createContext();
 
 function App() {
@@ -16,8 +16,20 @@ function App() {
     const [hint, setHint] = useState(hintDefault);
 
 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
     useEffect(() => {
-        setCorrectNumber(generateNumber(4));
+        setCorrectNumber(generateNumber(5));
     }, []);
 
     const onEnter = () => {
@@ -28,11 +40,21 @@ function App() {
         for (let i = 0; i < 5; i++) {
             currNumber += board[currAttempt.attempt][i];
         }
+        if ( currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length != 5) {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Oyun Kuralları!',
+                html: '1-Aynı sayıları tekrar giremezsiniz.<hr>'
+
+            })
+            return;
+        }
+
         // içeren sayı var mı kontrolü, ipucu için
         for (let i = 0, len = currNumber.length; i < len; ++i) {
-            if (currNumber[i] == correctNumber.toString()[i]) {
+            if (currNumber[i] == correctNumber[i]) {
                 hint[currAttempt.attempt]+="+";
-            } else if (correctNumber.toString().includes(currNumber[i])){
+            } else if (correctNumber.includes(currNumber[i])){
                 hint[currAttempt.attempt]+="-";
             }    
         }
@@ -108,6 +130,10 @@ function App() {
                     gameOver.gameOver ? <GameOver/>: <Keyboard/>
                 } </div>
             </AppContext.Provider>
+            <script src="sweetalert2.all.min.js"></script>
+            <script src="sweetalert2.min.js"></script>
+            <link rel="stylesheet" href="sweetalert2.min.css"></link>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         </div>
     );
 }

@@ -109,10 +109,14 @@ nav h1 {
 
 .content div:hover { background-color: #ffffff; color: #000000;
 }
+
+.content div:nth-child(11){
+  pointer-events: none;
+}
 /* hint */
 .hint {
       border-radius: 25px;
-      background: #bc08dc4d;
+      border: 1px solid #FFFFFF;
       width: 150px;
       height: 78px;
       display: flex;

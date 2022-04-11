@@ -28,7 +28,7 @@ function Key({keyVal, button}) {
             (() => {
                 switch (keyVal) {
                     case "ENTER":
-                        return <AiOutlineEnter viewBox="0 0 1024 920"/>;
+                        return <AiOutlineEnter viewBox="0 0 1024 900"/>;
                     case "DELETE":
                         return <BsBackspace viewBox="0 0 16 14"/>;
                     default:

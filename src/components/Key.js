@@ -22,20 +22,20 @@ function Key({keyVal, button}) {
         }
     };
     return (
-        <div className="key"
-            onClick={selectLetter}>
+        <div
+            onClick={selectLetter}> <span>
             {
             (() => {
                 switch (keyVal) {
                     case "ENTER":
-                        return <AiOutlineEnter/>;
+                        return <AiOutlineEnter viewBox="0 0 1024 920"/>;
                     case "DELETE":
-                        return <BsBackspace/>;
+                        return <BsBackspace viewBox="0 0 16 14"/>;
                     default:
                         return keyVal;
                 }
             })()
-        } </div>
+        } </span></div>
     );
 }
 

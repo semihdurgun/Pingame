@@ -54,22 +54,14 @@ function Keyboard() {
     return (
         <div className="keyboard"
             onKeyDown={handleKeyboard}>
-            <div className="line1">
-    
-                
-                {
-                keys1.map((key) => {
-                    return <Key keyVal={key}/>;
-                })
-            } </div>
+                <div className="content">
 
+                    {
+                    keys1.map((key) => {
+                        return <Key keyVal={key}/>;
+                    })
+                    }
 
-            <div className="line3">
-                <Key keyVal={"ENTER"}
-                    button/>
-
-                <Key keyVal={"DELETE"}
-                    button/>
             </div>
         </div>
     );

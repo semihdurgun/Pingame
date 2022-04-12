@@ -94,6 +94,29 @@ form label p {
 #error {
   background-color: #3a393c;
 }
+/* login */
+.login {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  background-color: #3a393c;
+  width: 500px;
+  height: 500px;
+  border-radius: 20%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  transition: all 1s linear;  
+}
+.hidden {
+  opacity: 0;
+}
+
 /* gameOver */
 .gameOver { text-align: center; width: 300px; color: #FFFFFF; margin-left: 5%; }
 

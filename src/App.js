@@ -12,7 +12,7 @@ export const AppContext = createContext();
 function getToken() {
     const tokenString = localStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
-    return userToken?.token
+    return userToken ?. token
 }
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
     const [hint, setHint] = useState(hintDefault);
 
 
-    const token = getToken();    
+    const token = getToken();
 
 
     const Toast = Swal.mixin({
@@ -33,10 +33,10 @@ function App() {
         timer: 4000,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
-      })
+    })
 
     useEffect(() => {
         setCorrectNumber(generateNumber(5));
@@ -46,27 +46,23 @@ function App() {
         if (currAttempt.letter !== 5) 
             return;
         
+
         let currNumber = "";
         for (let i = 0; i < 5; i++) {
             currNumber += board[currAttempt.attempt][i];
         }
-        if ( currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length != 5) {
-            Toast.fire({
-                icon: 'warning',
-                title: 'Oyun Kuralları!',
-                html: '1-Aynı sayıları tekrar giremezsiniz.<hr>'
-
-            })
+        if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length != 5) {
+            Toast.fire({icon: 'warning', title: 'Oyun Kuralları!', html: '1-Aynı sayıları tekrar giremezsiniz.<hr>'})
             return;
         }
 
         // içeren sayı var mı kontrolü, ipucu için
-        for (let i = 0, len = currNumber.length; i < len; ++i) {
+        for (let i = 0, len = currNumber.length; i < len; ++ i) {
             if (currNumber[i] == correctNumber[i]) {
-                hint[currAttempt.attempt]+="+";
-            } else if (correctNumber.includes(currNumber[i])){
-                hint[currAttempt.attempt]+="-";
-            }    
+                hint[currAttempt.attempt] += "+";
+            } else if (correctNumber.includes(currNumber[i])) {
+                hint[currAttempt.attempt] += "-";
+            }
         }
         console.log(hint);
         setHint(hint);
@@ -90,6 +86,7 @@ function App() {
         if (currAttempt.letter === 0) 
             return;
         
+
         const newBoard = [...board];
         newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
         setBoard(newBoard);
@@ -103,6 +100,7 @@ function App() {
         if (currAttempt.letter > 4) 
             return;
         
+
         const newBoard = [...board];
         newBoard[currAttempt.attempt][currAttempt.letter] = key;
         setBoard(newBoard);
@@ -111,13 +109,9 @@ function App() {
             letter: currAttempt.letter + 1
         });
     };
-    
+
     return (
         <div className="App">
-            {!token && <Login/> }
-            <nav>
-                <h1>p-i-n-g-a-m-e</h1>
-            </nav>
             <AppContext.Provider value={
                 {
                     board,
@@ -129,14 +123,22 @@ function App() {
                     onDelete,
                     onEnter,
                     gameOver,
-                    hint,
+                    hint
                 }
             }>
+                {
+                ! token && <Login/>
+            }
+                <nav>
+                    <h1>p-i-n-g-a-m-e</h1>
+                </nav>
                 <div className="game">
                     <div className="game1">
-                        <Board/>
-                        {hint && <Hint hintPos={currAttempt.attempt}/>}
-                    </div>
+                        <Board/> {
+                        hint && <Hint hintPos={
+                            currAttempt.attempt
+                        }/>
+                    } </div>
                     {
                     gameOver.gameOver ? <GameOver/>: <Keyboard/>
                 } </div>

@@ -23,8 +23,8 @@ function Key({keyVal, button}) {
     };
     return (
         <div
-            onClick={selectLetter}> <span>
-            {
+            onClick={selectLetter}> 
+            <span> {
             (() => {
                 switch (keyVal) {
                     case "ENTER":
@@ -35,7 +35,8 @@ function Key({keyVal, button}) {
                         return keyVal;
                 }
             })()
-        } </span></div>
+            } </span>
+        </div>
     );
 }
 

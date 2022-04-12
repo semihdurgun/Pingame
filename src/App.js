@@ -6,7 +6,14 @@ import React, {useState, createContext, useEffect} from "react";
 import GameOver from "./components/GameOver";
 import Hint from "./components/Hint";
 import Swal from "sweetalert2";
+import Login from "./components/Login";
 export const AppContext = createContext();
+
+function getToken() {
+    const tokenString = localStorage.getItem('token');
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token
+}
 
 function App() {
     const [board, setBoard] = useState(boardDefault);
@@ -14,6 +21,9 @@ function App() {
     const [correctNumber, setCorrectNumber] = useState("");
     const [gameOver, setGameOver] = useState({gameOver: false, guessedWord: false});
     const [hint, setHint] = useState(hintDefault);
+
+
+    const token = getToken();    
 
 
     const Toast = Swal.mixin({
@@ -101,9 +111,10 @@ function App() {
             letter: currAttempt.letter + 1
         });
     };
-
+    
     return (
         <div className="App">
+            {!token && <Login/> }
             <nav>
                 <h1>p-i-n-g-a-m-e</h1>
             </nav>

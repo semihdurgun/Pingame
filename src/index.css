@@ -39,6 +39,9 @@ nav h1 {
     padding-top: 50px;
     flex-direction: column;
   } */
+form label p {
+  margin: 0px;
+}
 .game {
   width: 100vw;
   height: calc(100vh - 170px);

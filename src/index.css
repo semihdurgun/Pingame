@@ -39,9 +39,7 @@ nav h1 {
     padding-top: 50px;
     flex-direction: column;
   } */
-form label p {
-  margin: 0px;
-}
+
 .game {
   width: 100vw;
   height: calc(100vh - 170px);
@@ -95,19 +93,36 @@ form label p {
   background-color: #3a393c;
 }
 /* login */
-.login {
+.login{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  z-index: 2000;
+  transition: all 1s linear;  
+}
+.login header{
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-content {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   top: 50%;
   left: 50%;
-  overflow: hidden;
-  background-color: #3a393c;
-  width: 500px;
-  height: 500px;
-  border-radius: 20%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
+  border: 1px solid #FFFFFF;
+  width: 600px;
+  height: 400px;
+  border-radius: 10%;
+  -webkit-transform: translateX (-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
   -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
@@ -115,8 +130,51 @@ form label p {
 }
 .hidden {
   opacity: 0;
+  z-index: -1;
 }
 
+form{
+  width: 500px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.login-input {
+  box-sizing: border-box;
+  width: 100px;
+  height: 30px;
+  border: 2px solid currentColor;
+  color: currentColor;
+  background: transparent;
+  border-radius: 7px;
+  padding: 0 10px;
+}
+#delete{
+  border:solid 2px #fff;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  text-decoration: none;
+  padding: 12px 18px;
+  font-size: 15px;
+  line-height: 22px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif; font-weight:400;
+  letter-spacing: 3px;
+  -webkit-transition: all .4s ease-in-out;
+      -moz-transition: all .4s ease-in-out;
+      -ms-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+          transition: all .4s ease-in-out;
+}
+#delete:hover{
+  background: #fff;
+  color: #121212
+}
 /* gameOver */
 .gameOver { text-align: center; width: 300px; color: #FFFFFF; margin-left: 5%; }
 

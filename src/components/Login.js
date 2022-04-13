@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
 import db from "../Config";
-import {AppContext} from "../App";
 import {collection, addDoc} from "firebase/firestore";
 
 function Login() {
@@ -31,21 +30,27 @@ function Login() {
     }
     return (
         <div id="box" className='login'>
+            <div className='login-content'>
+                <header>
+                    <h1 style={{fontWeight:70,letterSpacing:0.5}}><strong>p-i-n-g-a-m-e</strong></h1>
+                </header>
             <form>
                 <label>
-                    <p>Adınız:
+                    <p style={{fontWeight:910,letterSpacing:3,fontSize:18}}>Bana bir isim lazım..
                     </p>
                     <input onChange={
                             e => setNickname(e.target.value)
                         }
                         type="text"
-                        required/>
+                        required
+                        className='login-input'/>
                 </label>
                 <div>
                     <button id="delete"
-                        onClick={deneme}>Oyna!</button>
+                        onClick={deneme}>Oyna</button>
                 </div>
             </form>
+            </div>
         </div>
 
     )

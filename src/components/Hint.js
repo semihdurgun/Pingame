@@ -3,13 +3,19 @@ import {AppContext} from "../App";
 
 function Hint() {
     const {hint, setHint} = useContext(AppContext);
-
     return (
-        <div className="">
+        <div className="hintboard">
             {hint.map((h, i) => {
                 return (
                     <div key={i} className="hint">
-                        <div className="hintPoint">{h}</div>
+                        {[...h].map(sign => {
+                            switch(sign){
+                                case "+":
+                                    return <span key={i} className="plus"></span>;
+                                case "-":
+                                    return <span key={i} className="minus"></span>;
+                            }
+                        })}
                     </div>
                 )
             })}

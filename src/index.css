@@ -72,7 +72,7 @@ nav h1 {
   flex: 33%;
   height: 100%;
   border: 1px solid grey;
-  margin: 5px;
+  margin: 0 5px;
   display: grid;
   place-items: center;
   font-size: 30px;
@@ -199,15 +199,37 @@ form{
 }
 /* hint */
 .hint {
-      border-radius: 25px;
-      border: 1px solid #FFFFFF;
-      width: 150px;
-      height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin:5px;
+  border-radius: 100%;
+  border: 1px solid #FFFFFF;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:5px;
 }
-.hintPoint {
-    letter-spacing: 8px;
+.hintboard{
+  height: 500px;
+  border: 1px solid black;
+
+}
+.plus{
+  width: 14px;
+  height: 14px;
+  border: 1px solid #63a75c;
+  border-radius: 100%;
+  margin: 0 2px;
+}
+.plus:hover{
+  background-color: #63a75c;
+}
+.minus{
+  width: 14px;
+  height: 14px;
+  border: 1px solid #c5ad42;
+  border-radius: 100%;
+  margin: 0 2px;
+}
+.minus:hover{
+  background-color: #c5ad42;
 }

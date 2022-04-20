@@ -200,7 +200,7 @@ form{
 /* hint */
 .hint {
   border-radius: 100%;
-  border: 1px solid #FFFFFF;
+  border: 1px solid grey;
   width: 75px;
   height: 75px;
   display: flex;

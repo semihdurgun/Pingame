@@ -25,7 +25,6 @@ function App() {
 
     const token = getToken();
 
-
     const Toast = Swal.mixin({
         toast: true,
         position: 'center',
@@ -68,6 +67,9 @@ function App() {
         setHint(hint);
         // sayı doğru mu?
         if (currNumber == correctNumber) {
+            var retrievedObject = JSON.parse(localStorage.getItem('game'))["won"];
+            retrievedObject += 1;
+            localStorage.setItem('game', JSON.stringify({won: retrievedObject, lose: JSON.parse(localStorage.getItem('game'))["lose"]}));
             setGameOver({gameOver: true, guessedWord: true});
             return;
         }
@@ -77,6 +79,9 @@ function App() {
         });
 
         if (currAttempt.attempt === 5) {
+            var retrievedObject = JSON.parse(localStorage.getItem('game'))["lose"];
+            retrievedObject += 1;
+            localStorage.setItem('game', JSON.stringify({won: JSON.parse(localStorage.getItem('game'))["won"], lose: retrievedObject}));
             setGameOver({gameOver: true, guessedWord: false});
             return;
         }

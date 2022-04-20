@@ -7,6 +7,7 @@ function Login() {
 
     function createToken() {
         localStorage.setItem('token', JSON.stringify({token: "ses"}));
+        localStorage.setItem('game', JSON.stringify({won: 0, lose: 0}));
         console.log(localStorage.getItem('token'));
     }
     const deneme = async (e) => {

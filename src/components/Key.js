@@ -4,7 +4,7 @@ import {AiOutlineEnter} from 'react-icons/ai';
 import {BsBackspace} from 'react-icons/bs';
 
 
-function Key({keyVal, button}) {
+function Key({keyVal}) {
     const {gameOver, onSelectLetter, onDelete, onEnter} = useContext(AppContext);
 
     const selectLetter = () => {

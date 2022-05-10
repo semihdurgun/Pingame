@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 src/Config.js
+.firebaserc
+database.rules.json
+firebase.json
+.firebase/hosting.cHVibGlj.cache
+.firebase/hosting.YnVpbGQ.cache

@@ -21,10 +21,10 @@ function App() {
     const [correctNumber, setCorrectNumber] = useState("");
     const [gameOver, setGameOver] = useState({gameOver: false, guessedWord: false});
     const [hint, setHint] = useState(hintDefault);
-
+    document.title = "p-i-n-g-a-m-e";
 
     const token = getToken();
-
+    const guessedNumberCount = 4;
     const Toast = Swal.mixin({
         toast: true,
         position: 'center',
@@ -38,19 +38,21 @@ function App() {
     })
 
     useEffect(() => {
-        setCorrectNumber(generateNumber(5));
+        setCorrectNumber(generateNumber(guessedNumberCount));
     }, []);
 
     const onEnter = () => {
-        if (currAttempt.letter !== 5) 
+        
+        if (currAttempt.letter !== guessedNumberCount) 
             return;
         
 
         let currNumber = "";
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < guessedNumberCount; i++) {
             currNumber += board[currAttempt.attempt][i];
         }
-        if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length != 5) {
+        console.log(currNumber)    
+        if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length != guessedNumberCount) {
             Toast.fire({icon: 'warning', title: 'Oyun Kuralları!', html: '1-Aynı sayıları tekrar giremezsiniz.<hr>'})
             return;
         }
@@ -78,7 +80,7 @@ function App() {
             letter: 0
         });
 
-        if (currAttempt.attempt === 5) {
+        if (currAttempt.attempt === 7) {
             var retrievedObject = JSON.parse(localStorage.getItem('game'))["lose"];
             retrievedObject += 1;
             localStorage.setItem('game', JSON.stringify({won: JSON.parse(localStorage.getItem('game'))["won"], lose: retrievedObject}));
@@ -102,7 +104,7 @@ function App() {
     };
 
     const onSelectLetter = (key) => {
-        if (currAttempt.letter > 4) 
+        if (currAttempt.letter > (guessedNumberCount-1)) 
             return;
         
 

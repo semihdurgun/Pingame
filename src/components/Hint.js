@@ -8,12 +8,12 @@ function Hint() {
             {hint.map((h, i) => {
                 return (
                     <div key={i} className="hint">
-                        {[...h].map(sign => {
+                        {[...h].map((sign,j) => {
                             switch(sign){
                                 case "+":
-                                    return <span key={i} className="plus"></span>;
+                                    return <span key={j} className="plus"></span>;
                                 case "-":
-                                    return <span key={i} className="minus"></span>;
+                                    return <span key={j} className="minus"></span>;
                             }
                         })}
                     </div>

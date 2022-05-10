@@ -1,5 +1,7 @@
 import React, {useContext} from "react";
 import {AppContext} from "../App";
+import {IoIosRefresh} from 'react-icons/io';
+import {BiCopy} from 'react-icons/bi';
 
 function GameOver() {
     const {
@@ -23,9 +25,13 @@ function GameOver() {
     
     return (
         <div className="gameOver">
-            <button onClick={() =>  navigator.clipboard.writeText(copiedText.trimEnd()+ "\n\n http://localhost:3000/")}>
-            Copy
-            </button>
+            <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}} className="content">
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() => window.location.reload(false)}>
+            <IoIosRefresh size={25}/>
+            </div>
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() =>  navigator.clipboard.writeText(copiedText.trimEnd()+ "\n\n http://localhost:3000/")}>
+            <BiCopy size={25} />
+            </div></div>
             <h3> {
                 gameOver.guessedWord ? "Sayıyı doğru bildiniz (:" : "Sayıyı bilemediniz!! :("
             } </h3>

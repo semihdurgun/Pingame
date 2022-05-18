@@ -9,6 +9,7 @@ function GameOver() {
         currAttempt,
         gameOver,
         correctNumber,
+        language
     } = useContext(AppContext);
     const point = 80  - (currAttempt.attempt * 25) + (hint.join('').split('+').length - 1)*4 + (hint.join('').split('-').length - 1)*2;
     let copiedText = " p-i-n-g-a-m-e " + (currAttempt.attempt+1) + "/6 Puan:" + point + "\n\n";    

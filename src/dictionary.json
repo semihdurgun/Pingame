@@ -1,0 +1,6 @@
+{ "en": { "welcome": "Need a name..",
+          "play": "Play"}, 
+  "tr":  { "welcome": "Bana bir isim lazım..",
+           "play": "Oyna",
+           "won1": "Sayıyı doğru bildiniz (:",
+           "lose1": "Sayıyı bilemediniz!! :(" } }

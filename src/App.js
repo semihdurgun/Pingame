@@ -7,6 +7,9 @@ import GameOver from "./components/GameOver";
 import Hint from "./components/Hint";
 import Swal from "sweetalert2";
 import Login from "./components/Login";
+import Header from "./components/Header";
+import dictionary from "././dictionary.json";
+
 export const AppContext = createContext();
 
 function getToken() {
@@ -21,8 +24,10 @@ function App() {
     const [correctNumber, setCorrectNumber] = useState("");
     const [gameOver, setGameOver] = useState({gameOver: false, guessedWord: false});
     const [hint, setHint] = useState(hintDefault);
-    document.title = "p-i-n-g-a-m-e";
+    const [language, setLanguage ]= useState("en");
 
+    document.title = "p-i-n-g-a-m-e";
+    console.log(dictionary);
     const token = getToken();
     const guessedNumberCount = 4;
     const Toast = Swal.mixin({
@@ -130,15 +135,15 @@ function App() {
                     onDelete,
                     onEnter,
                     gameOver,
-                    hint
+                    hint,
+                    language,
+                    setLanguage
                 }
             }>
                 {
                 ! token && <Login/>
             }
-                <nav>
-                    <h1>p-i-n-g-a-m-e</h1>
-                </nav>
+                <Header />
                 <div className="game">
                     <div className="game1">
                         <Board/> {

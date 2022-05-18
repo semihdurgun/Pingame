@@ -1,10 +1,17 @@
-import React, { useState} from 'react'
+import React, { useState, useContext} from 'react'
+import {AppContext} from "../App";
 import db from "../Config";
 import {collection, addDoc} from "firebase/firestore";
+import Header from './Header';
+import dictionary from "../dictionary.json";
 
 function Login() {
     const [nickname, setNickname] = useState(null);
-
+    const {
+        language,
+        setLanguage
+    } = useContext(AppContext);
+    
     function createToken() {
         localStorage.setItem('token', JSON.stringify({token: "ses"}));
         localStorage.setItem('game', JSON.stringify({won: 0, lose: 0}));
@@ -32,12 +39,10 @@ function Login() {
     return (
         <div id="box" className='login'>
             <div className='login-content'>
-                <header>
-                    <h1 style={{fontWeight:70,letterSpacing:0.5}}><strong>p-i-n-g-a-m-e</strong></h1>
-                </header>
+                <Header />
             <form>
                 <label>
-                    <p style={{fontWeight:910,letterSpacing:3,fontSize:18}}>Bana bir isim lazım..
+                    <p style={{fontWeight:910,letterSpacing:3,fontSize:18}}>{dictionary[language].welcome}
                     </p>
                     <input onChange={
                             e => setNickname(e.target.value)
@@ -48,7 +53,7 @@ function Login() {
                 </label>
                 <div>
                     <button id="delete"
-                        onClick={deneme}>Oyna</button>
+                        onClick={deneme}>{dictionary[language].play}</button>
                 </div>
             </form>
             </div>

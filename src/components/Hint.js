@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
-import {AppContext} from "../App";
+import {  useSelector } from "react-redux";
 
 function Hint() {
-    const {hint, setHint} = useContext(AppContext);
+    const selector = useSelector(state=>state)
     return (
         <div className="hintboard">
-            {hint.map((h, i) => {
+            {selector.game.hint.map((h, i) => {
                 return (
                     <div key={i} className="hint">
                         {[...h].map((sign,j) => {

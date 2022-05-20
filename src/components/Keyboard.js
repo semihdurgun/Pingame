@@ -1,6 +1,8 @@
 import React, {useCallback, useEffect, useContext} from "react";
 import Key from "./Key";
 import {AppContext} from "../App";
+import { useSelector } from "react-redux";
+
 function Keyboard() {
     const keys1 = [
         "1",
@@ -17,16 +19,14 @@ function Keyboard() {
         "ENTER"
     ];
     const {
-        board,
-        currAttempt,
-        gameOver,
         onSelectLetter,
         onEnter,
         onDelete
     } = useContext(AppContext);
-
+    const selector = useSelector(state=>state)
+   
     const handleKeyboard = useCallback((event) => {
-        if (gameOver.gameOver) 
+        if (selector.game.gameOver) 
             return;
         
 
@@ -42,7 +42,8 @@ function Keyboard() {
             });
 
         }
-    }, [currAttempt]);
+    }, [selector.game.letter,selector.game.attempt]);
+
     useEffect(() => {
         document.addEventListener("keydown", handleKeyboard);
 

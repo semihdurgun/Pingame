@@ -2,15 +2,15 @@ import React, {useContext} from "react";
 import {AppContext} from "../App";
 import {AiOutlineEnter} from 'react-icons/ai';
 import {BsBackspace} from 'react-icons/bs';
-
+import { useSelector } from "react-redux";
 
 function Key({keyVal}) {
-    const {gameOver, onSelectLetter, onDelete, onEnter} = useContext(AppContext);
+    const { onSelectLetter,onDelete, onEnter} = useContext(AppContext);
+    const selector = useSelector(state=>state)
 
     const selectLetter = () => {
-        if (gameOver.gameOver) 
+        if (selector.game.gameOver) 
             return;
-        
 
 
         if (keyVal === "ENTER") {

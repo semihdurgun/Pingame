@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
-import {AppContext} from '../App'
+import React from 'react'
+import { useSelector } from "react-redux";
 
 function Letter({val, pos}) {
-    const {board} = useContext(AppContext);
-    const letter = board[val][pos];
+    const selector = useSelector(state=>state)
+    const letter = selector.game.board2[val][pos];
     return (
         <div className='letter'>
             {letter}</div>

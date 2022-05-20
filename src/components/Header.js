@@ -1,11 +1,14 @@
-import React, {useContext} from 'react'
-import {AppContext} from "../App";
+import React from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { language } from "../stores/Site"
 
 function Header() {
-    const {language, setLanguage} = useContext(AppContext);
-
+    const selector = useSelector(state=>state)
+    const dispatch = useDispatch()
+    console.log(selector)
+    
     const changeLanguage = (lg) => {
-        setLanguage(lg);
+        dispatch(language(lg))
         document.getElementById("myDropdown").classList.toggle("show");
     }
     function myFunction() {

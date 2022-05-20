@@ -1,17 +1,14 @@
-import React, { useState, useContext} from 'react'
-import {AppContext} from "../App";
+import React, { useState } from 'react'
 import db from "../Config";
 import {collection, addDoc} from "firebase/firestore";
 import Header from './Header';
 import dictionary from "../dictionary.json";
+import { useSelector } from "react-redux";
 
 function Login() {
+    const selector = useSelector(state=>state)
     const [nickname, setNickname] = useState(null);
-    const {
-        language,
-        setLanguage
-    } = useContext(AppContext);
-    
+
     function createToken() {
         localStorage.setItem('token', JSON.stringify({token: "ses"}));
         localStorage.setItem('game', JSON.stringify({won: 0, lose: 0}));
@@ -19,7 +16,7 @@ function Login() {
     }
     const deneme = async (e) => {
         e.preventDefault();
-        if (nickname === null) {
+        if (selector.site.value === null) {
             alert("Lütfen bir nick giriniz");
             return;
         }
@@ -30,6 +27,7 @@ function Login() {
         removed.classList.add("hidden");
         createToken();
         try {
+            localStorage.setItem('nickname', JSON.stringify({nickname: nickname}));
             const docRef = await addDoc(collection(db, "users"), {nickname: nickname});
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
@@ -42,7 +40,7 @@ function Login() {
                 <Header />
             <form>
                 <label>
-                    <p style={{fontWeight:910,letterSpacing:3,fontSize:18}}>{dictionary[language].welcome}
+                    <p style={{fontWeight:910,letterSpacing:3,fontSize:18}}>{dictionary[selector.site.language].welcome}
                     </p>
                     <input onChange={
                             e => setNickname(e.target.value)
@@ -53,7 +51,7 @@ function Login() {
                 </label>
                 <div>
                     <button id="delete"
-                        onClick={deneme}>{dictionary[language].play}</button>
+                        onClick={deneme}>{dictionary[selector.site.language].play}</button>
                 </div>
             </form>
             </div>

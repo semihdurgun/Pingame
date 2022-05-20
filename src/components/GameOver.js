@@ -1,6 +1,6 @@
-import React, {useContext} from "react";
-import {IoIosRefresh} from 'react-icons/io';
-import {BiCopy} from 'react-icons/bi';
+import React from "react";
+import { IoIosRefresh } from 'react-icons/io';
+import { BiCopy } from 'react-icons/bi';
 import { useSelector } from "react-redux";
 
 function GameOver() {

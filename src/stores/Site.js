@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { value: "en" }
+const initialState = { language: "en", nickname: "" }
 
 const Site = createSlice({
   name: 'Site',
   initialState,
   reducers: {
     language(state, action) {
-      state.value = action.payload
+      state.language = action.payload
     },
+    
   },
 })
 

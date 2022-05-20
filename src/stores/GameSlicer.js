@@ -60,7 +60,7 @@ var hintDefault = [
   "",
   ""
   ]
-const initialState = { attempt: 0, letter: 0, board2: boardDefault, hint: hintDefault, correctNumber: "", gameOver: false, guessedWord: false }
+const initialState = { guessedNumberCount: 4, attempt: 0, letter: 0, board2: boardDefault, hint: hintDefault, correctNumber: "", gameOver: false, guessedWord: false }
 
 const GameSlicer = createSlice({
   name: 'GameOver',
@@ -81,6 +81,9 @@ const GameSlicer = createSlice({
       state.guessedWord = action.payload.guessedWord
     },
     hint(state, action) {
+      state.hint = action.payload
+    },
+    guessed_number_count(state, action) {
       state.hint = action.payload
     },
   },

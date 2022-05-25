@@ -22,7 +22,6 @@ function App() {
     const dispatch = useDispatch()
 
     document.title = "p-i-n-g-a-m-e";
-
     const token = getToken();
     
 
@@ -30,7 +29,6 @@ function App() {
         dispatch(correct_number(generateNumber(selector.game.guessedNumberCount)))
     }, []);
 
-    
     return (
         <div className="App">
             {  ! token && <Login/>   }

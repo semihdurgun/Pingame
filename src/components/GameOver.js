@@ -2,12 +2,13 @@ import React from "react";
 import { IoIosRefresh } from 'react-icons/io';
 import { BiCopy } from 'react-icons/bi';
 import { useSelector } from "react-redux";
+import dictionary from "../dictionary.json";
 
 function GameOver() {
     const selector = useSelector(state=>state)
 
-    const point = 80  - (selector.game.attempt * 25) + (selector.game.hint.join('').split('+').length - 1)*4 + (selector.game.hint.join('').split('-').length - 1)*2;
-    let copiedText = " p-i-n-g-a-m-e " + (selector.game.attempt+1) + "/6 Puan:" + point + "\n\n";    
+    const point = 80  - (selector.game.attempt * 18) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*2;
+    let copiedText = " p-i-n-g-a-m-e " + (selector.game.attempt+1) + "/7 Puan:" + point + "\n\n";    
     for (let i = 0; i < selector.game.hint.length; i++) {
         for (let j = 0; j < selector.game.hint[i].length; j++) {
             if (selector.game.hint[i][j] === "+"){
@@ -29,16 +30,16 @@ function GameOver() {
             <BiCopy size={25} />
             </div></div>
             <h3> {
-                selector.game.guessedWord ? "Sayıyı doğru bildiniz (:" : "Sayıyı bilemediniz!! :("
+                selector.game.guessedWord ? dictionary[selector.site.language].won1 : dictionary[selector.site.language].lose1 
             } </h3>
-            <h1>Aranan Sayı: {selector.game.correctNumber}</h1>
+            <h2 disabled >{dictionary[selector.site.language].search + selector.game.correctNumber}</h2>
             {
             selector.game.guessedWord && (
                 <h3>
-                    Tebrikler {
-                    selector.game.attempt + 1
-                }
-                    .&nbsp;aramada bildiniz! Puan:{ point}</h3>
+                    { dictionary[selector.site.language].won2 } <br></br>
+                    { dictionary[selector.site.language].attempt }
+                    { selector.game.attempt + 1 } <br></br>
+                    { dictionary[selector.site.language].point } { point }</h3>
             )
         } </div>
     );

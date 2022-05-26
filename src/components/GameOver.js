@@ -1,16 +1,17 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { IoIosRefresh } from 'react-icons/io';
 import { BiCopy } from 'react-icons/bi';
 import { useSelector } from "react-redux";
 import dictionary from "../dictionary.json";
-import {collection, addDoc} from "firebase/firestore";
+import {collection, addDoc, Timestamp, getDocs, query, where} from "firebase/firestore";
 import db from "../Config";
 
 function GameOver() {
     const selector = useSelector(state=>state)
+    const [percent,setPercent] = useState('')
     const point = 80  - (selector.game.attempt * 18) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*2;
 
-    let copiedText = " p-i-n-g-a-m-e " + (selector.game.attempt+1) + "/7 Puan:" + point + "\n\n";    
+    let copiedText = " p-i-n-g-a-m-e " + (selector.game.attempt+1) + "/7 Point:" + point + "  %"+ percent +"\n\n";    
     for (let i = 0; i < selector.game.hint.length; i++) {
         for (let j = 0; j < selector.game.hint[i].length; j++) {
             if (selector.game.hint[i][j] === "+"){
@@ -23,9 +24,21 @@ function GameOver() {
     }
 
     const add_database = async (point) => {
+        var sayac = 0
         try {
-            const docRef = await addDoc(collection(db, "scoreboard"), {nickname: JSON.parse(localStorage.getItem('nickname')).nickname, point: point});
+            const docRef = await addDoc(collection(db, "scoreboard"), {
+                nickname: localStorage.getItem('nickname'), 
+                point: point,
+                date: Timestamp.now()});
             console.log("Document written with ID: ", docRef.id);
+            const querySnapshot = await getDocs(collection(db, "scoreboard")).then("thatshokey.");
+            await querySnapshot.forEach((doc) => {
+                if (point>doc.data().point){
+                    sayac += 1
+                }
+              });
+              var per = (sayac/querySnapshot.size).toFixed(3)*100
+            setPercent(per)
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -33,6 +46,7 @@ function GameOver() {
     useEffect(() => {
         add_database(point)
     }, []);
+
 
     return (
         <div className="gameOver">
@@ -51,10 +65,11 @@ function GameOver() {
             {
             selector.game.guessedWord && ( 
                 <h3> 
-                    { dictionary[selector.site.language].won2 } <br></br>
+                <br></br> <span style={{letterSpacing:1.4}} id="percent">%{percent} { dictionary[selector.site.language].percent }</span>
+                    <br></br><br></br> 
                     { dictionary[selector.site.language].attempt }
-                    { selector.game.attempt + 1 } <br></br>
-                    { dictionary[selector.site.language].point } { point }</h3>
+                    { selector.game.attempt + 1 } <br></br><br></br>
+                    <span style={{color:"red"}}>{ dictionary[selector.site.language].point } { point } </span> </h3>
             )
             
         }

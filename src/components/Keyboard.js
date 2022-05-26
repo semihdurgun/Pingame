@@ -4,6 +4,7 @@ import {AiOutlineEnter} from 'react-icons/ai';
 import {BsBackspace} from 'react-icons/bs';
 import { curr_attempt, board2, game_over, hint } from "../stores/GameSlicer";
 import Swal from "sweetalert2";
+import dictionary from "../dictionary.json";
 
 function Keyboard() {
     const keys1 = [
@@ -47,7 +48,7 @@ function Keyboard() {
         }
         console.log(currNumber)    
         if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length != selector.game.guessedNumberCount) {
-            Toast.fire({icon: 'warning', title: 'Oyun Kuralları!', html: '1-Aynı sayıları tekrar giremezsiniz.<hr>'})
+            Toast.fire({icon: 'warning', title: dictionary[selector.site.language].toast, html: dictionary[selector.site.language].toast2})
             return;
         }
         // içeren sayı var mı kontrolü, ipucu için

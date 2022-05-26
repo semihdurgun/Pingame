@@ -9,11 +9,7 @@ function Login() {
     const selector = useSelector(state=>state)
     const [nickname,setNickname] = useState('')    
 
-    function createToken() {
-        localStorage.setItem('token', JSON.stringify({token: "ses"}));
-        localStorage.setItem('game', JSON.stringify({won: 0, lose: 0}));
-        console.log(localStorage.getItem('token'));
-    }
+
     const deneme = async (e) => {
         e.preventDefault();
         if (nickname === '') {
@@ -26,19 +22,14 @@ function Login() {
         var removed = document.getElementById("box");
         
         removed.classList.add("hidden");
-        createToken();
-        try {
-            localStorage.setItem('nickname', JSON.stringify({nickname: nickname}));
-            const docRef = await addDoc(collection(db, "users"), {nickname: nickname});
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
+        localStorage.setItem('game', JSON.stringify({won: 0, lose: 0}));
+        localStorage.setItem('nickname', nickname);
+
     }
     return (
         <div id="box" className='login'>
             <div className='login-content'>
-                <Header />
+                <Header value="nav"/>
             <form>
                 <label>
                     <p style={{fontWeight:910,letterSpacing:3,fontSize:18}}>{dictionary[selector.site.language].welcome}

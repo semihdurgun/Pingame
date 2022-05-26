@@ -9,29 +9,27 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import dictionary from "././dictionary.json";
 import { useDispatch, useSelector } from "react-redux";
-import { correct_number} from "./stores/GameSlicer";
+import { correct_number } from "./stores/GameSlicer";
+import { set_nickname } from "./stores/Site";
 
-function getToken() {
-    const tokenString = localStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken ?. token
-}
+
 
 function App() {
     const selector = useSelector(state=>state)
     const dispatch = useDispatch()
 
     document.title = "p-i-n-g-a-m-e";
-    const token = getToken();
-    
+
+    const tokenString = localStorage.getItem('token');
+    const userToken =  JSON.parse(tokenString);
 
     useEffect(() => {
         dispatch(correct_number(generateNumber(selector.game.guessedNumberCount)))
     }, []);
-
+    
     return (
         <div className="App">
-            {  ! token && <Login/>   }
+            {  ! userToken && <Login/>   }
             <Header />
             <div className="game">
                 <div className="game1">

@@ -59,7 +59,6 @@ function Keyboard() {
                 _hint[selector.game.attempt] += "-"
             }
         }
-        console.log(_hint)
         dispatch(hint(_hint))
         // sayı doğru mu?
         if (currNumber == selector.game.correctNumber) {
@@ -79,7 +78,6 @@ function Keyboard() {
             return;
         }
     };
-
     const onDelete = () => {
         if (selector.game.letter === 0) 
             return;
@@ -98,7 +96,6 @@ function Keyboard() {
             letter: selector.game.letter - 1
         }))
     };
-
     const onSelectLetter = (key) => {
         if (selector.game.letter > (selector.game.guessedNumberCount-1)) 
             return;

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 function Login() {
     const selector = useSelector(state=>state)
-    const [nickname, setNickname] = useState(null);
+    const [nickname,setNickname] = useState('')    
 
     function createToken() {
         localStorage.setItem('token', JSON.stringify({token: "ses"}));
@@ -16,7 +16,7 @@ function Login() {
     }
     const deneme = async (e) => {
         e.preventDefault();
-        if (selector.site.value === null) {
+        if (nickname === '') {
             alert("Lütfen bir nick giriniz");
             return;
         }
@@ -24,6 +24,7 @@ function Login() {
         deleted.remove();
 
         var removed = document.getElementById("box");
+        
         removed.classList.add("hidden");
         createToken();
         try {

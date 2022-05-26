@@ -38,6 +38,7 @@ header h1 {
   font-family: Helvetica, Arial, sans-serif;
   color: white;
   font-size: 40px;
+  margin-left: 50px;
 }
 
 .icon{
@@ -355,6 +356,13 @@ form{
   }
   .plus{
     background-color: #63a75c;
+  }
+  .login-content{
+    width: 100vw;
+    height: 40%;
+  }
+  header h1{
+    font-size: 30px;
   }
 }
 @media only screen and (max-height: 420px) and (min-width: 600px) {

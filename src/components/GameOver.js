@@ -9,9 +9,14 @@ import db from "../Config";
 function GameOver() {
     const selector = useSelector(state=>state)
     const [percent,setPercent] = useState('')
-    const point = 80  - (selector.game.attempt * 18) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*2;
+    var point = 80  - ((selector.game.attempt-1) * 18) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*3;
+    if (point<0) {point=0};
 
-    let copiedText = " p-i-n-g-a-m-e " + (selector.game.attempt+1) + "/7 Point:" + point + "  %"+ percent +"\n\n";    
+    useEffect(() => {
+        add_database(point)
+    }, []);
+
+    let copiedText = " p-i-n-g-a-m-e " + (selector.game.attempt) + "/8 Point: " + point + "  %"+ percent +"\n\n";    
     for (let i = 0; i < selector.game.hint.length; i++) {
         for (let j = 0; j < selector.game.hint[i].length; j++) {
             if (selector.game.hint[i][j] === "+"){
@@ -22,7 +27,6 @@ function GameOver() {
         }
         copiedText += "\n";
     }
-
     const add_database = async (point) => {
         var sayac = 0
         try {
@@ -32,21 +36,26 @@ function GameOver() {
                 date: Timestamp.now()});
             console.log("Document written with ID: ", docRef.id);
             const querySnapshot = await getDocs(collection(db, "scoreboard")).then("thatshokey.");
-            await querySnapshot.forEach((doc) => {
+            querySnapshot.forEach((doc) => {
                 if (point>doc.data().point){
                     sayac += 1
                 }
               });
-              var per = (sayac/querySnapshot.size).toFixed(3)*100
-            setPercent(per)
+            var per = ((sayac/querySnapshot.size).toFixed(4))*100
+            setPercent(per.toFixed(2)) 
         } catch (e) {
             console.error("Error adding document: ", e);
         }
     }
-    useEffect(() => {
-        add_database(point)
-    }, []);
 
+    function copied() {
+        navigator.clipboard.writeText(copiedText.trimEnd()+ "\n\n https://p-i-n-g-a-m-e.web.app/")
+        var x = document.getElementById("copy")
+        x.style.display = "block";
+        setTimeout(()=>{
+            x.style.display = "none";
+        }, 3000)
+    }
 
     return (
         <div className="gameOver">
@@ -54,9 +63,11 @@ function GameOver() {
                 <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() => window.location.reload(false)}>
                     <IoIosRefresh size={25}/>
                 </div>
-                <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() =>  navigator.clipboard.writeText(copiedText.trimEnd()+ "\n\n http://p-i-n-g-a-m-e.com/")}>
+                <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() => copied() }>
                     <BiCopy size={25} />
+                    <span id="copy">{dictionary[selector.site.language].copy}</span>
                 </div>
+                
             </div>
             <h3> {
                 selector.game.guessedWord ? dictionary[selector.site.language].won1 : dictionary[selector.site.language].lose1 

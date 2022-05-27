@@ -17,7 +17,7 @@ function Keyboard() {
         "7",
         "8",
         "9",
-        "DELETE",
+        "DLT",
         "",
         "ENTER"
     ];
@@ -61,6 +61,8 @@ function Keyboard() {
             }
         }
         dispatch(hint(_hint))
+        dispatch(curr_attempt({attempt:selector.game.attempt +1,letter:0}))
+
         // sayı doğru mu?
         if (currNumber == selector.game.correctNumber) {
             var retrievedObject = JSON.parse(localStorage.getItem('game'))["won"];
@@ -69,8 +71,6 @@ function Keyboard() {
             dispatch(game_over({gameOver: true, guessedWord: true}))
             return;
         }
-        dispatch(curr_attempt({attempt:selector.game.attempt +1,letter:0}))
-
         if (selector.game.attempt === 7) {
             var retrievedObject = JSON.parse(localStorage.getItem('game'))["lose"];
             retrievedObject += 1;
@@ -150,7 +150,7 @@ function Keyboard() {
 
         if (keyVal === "ENTER") {
             onEnter();
-        } else if (keyVal === "DELETE") {
+        } else if (keyVal === "DLT") {
             onDelete();
         } else {
             onSelectLetter(keyVal);
@@ -171,7 +171,7 @@ function Keyboard() {
                                     switch (key) {
                                         case "ENTER":
                                             return <AiOutlineEnter viewBox="0 0 1024 900"/>;
-                                        case "DELETE":
+                                        case "DLT":
                                             return <BsBackspace viewBox="0 0 16 14"/>;
                                         default:
                                             return key;

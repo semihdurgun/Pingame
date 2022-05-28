@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import db from "../Config";
-import {collection, addDoc} from "firebase/firestore";
 import Header from './Header';
 import dictionary from "../dictionary.json";
 import { useSelector } from "react-redux";

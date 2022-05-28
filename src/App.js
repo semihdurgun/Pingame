@@ -7,12 +7,9 @@ import GameOver from "./components/GameOver";
 import Hint from "./components/Hint";
 import Login from "./components/Login";
 import Header from "./components/Header";
-import dictionary from "././dictionary.json";
 import { useDispatch, useSelector } from "react-redux";
 import { correct_number } from "./stores/GameSlicer";
 import { language } from "./stores/Site";
-
-
 
 function App() {
     const selector = useSelector(state=>state)
@@ -27,9 +24,8 @@ function App() {
         if (localStorage.getItem("language") !== null){
             dispatch(language(localStorage.getItem("language")))
         }    
-    }, []);
-    
-    
+    }, []); 
+
     return (
         <div className="App">
             {  ! tokenString && <Login/>   }

@@ -3,8 +3,9 @@ import { IoIosRefresh } from 'react-icons/io';
 import { BiCopy } from 'react-icons/bi';
 import { useSelector } from "react-redux";
 import dictionary from "../dictionary.json";
-import {collection, addDoc, Timestamp, getDocs, query, where} from "firebase/firestore";
+import {collection, addDoc, Timestamp, getDocs} from "firebase/firestore";
 import db from "../Config";
+import Confetti from 'react-confetti'
 
 function GameOver() {
     const selector = useSelector(state=>state)
@@ -74,14 +75,16 @@ function GameOver() {
             } </h3>
             <h2 disabled >{dictionary[selector.site.language].search + selector.game.correctNumber}</h2>
             {
-            selector.game.guessedWord && ( 
+            selector.game.guessedWord && ( <>
+            <Confetti gravity={0.07}/>
                 <h3> 
                 <br></br> <span style={{letterSpacing:1.4}} id="percent">%{percent} { dictionary[selector.site.language].percent }</span>
                     <br></br><br></br> 
                     { dictionary[selector.site.language].attempt }
-                    { selector.game.attempt + 1 } <br></br><br></br>
+                    { selector.game.attempt } <br></br><br></br>
                     <span style={{color:"red"}}>{ dictionary[selector.site.language].point } { point } </span> </h3>
-            )
+                    </>
+                )
             
         }
         </div>

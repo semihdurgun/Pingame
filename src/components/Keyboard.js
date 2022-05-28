@@ -47,14 +47,14 @@ function Keyboard() {
             currNumber += selector.game.board2[selector.game.attempt][i];
         }
         console.log(currNumber)    
-        if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length != selector.game.guessedNumberCount) {
+        if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length !== selector.game.guessedNumberCount) {
             Toast.fire({icon: 'warning', title: dictionary[selector.site.language].toast, html: dictionary[selector.site.language].toast2})
             return;
         }
         // içeren sayı var mı kontrolü, ipucu için
         var _hint = [...selector.game.hint]
         for (let i = 0, len = currNumber.length; i < len; ++ i) {
-            if (currNumber[i] == selector.game.correctNumber[i]) {
+            if (currNumber[i] === selector.game.correctNumber[i]) {
                 _hint[selector.game.attempt] += "+"
             } else if (selector.game.correctNumber.includes(currNumber[i])) {
                 _hint[selector.game.attempt] += "-"
@@ -64,17 +64,17 @@ function Keyboard() {
         dispatch(curr_attempt({attempt:selector.game.attempt +1,letter:0}))
 
         // sayı doğru mu?
-        if (currNumber == selector.game.correctNumber) {
-            var retrievedObject = JSON.parse(localStorage.getItem('game'))["won"];
-            retrievedObject += 1;
-            localStorage.setItem('game', JSON.stringify({won: retrievedObject, lose: JSON.parse(localStorage.getItem('game'))["lose"]}));
+        if (currNumber === selector.game.correctNumber) {
+            var getWon = JSON.parse(localStorage.getItem('game'))["won"];
+            getWon += 1;
+            localStorage.setItem('game', JSON.stringify({won: getWon, lose: JSON.parse(localStorage.getItem('game'))["lose"]}));
             dispatch(game_over({gameOver: true, guessedWord: true}))
             return;
         }
         if (selector.game.attempt === 7) {
-            var retrievedObject = JSON.parse(localStorage.getItem('game'))["lose"];
-            retrievedObject += 1;
-            localStorage.setItem('game', JSON.stringify({won: JSON.parse(localStorage.getItem('game'))["won"], lose: retrievedObject}));
+            var getLose = JSON.parse(localStorage.getItem('game'))["lose"];
+            getLose += 1;
+            localStorage.setItem('game', JSON.stringify({won: JSON.parse(localStorage.getItem('game'))["won"], lose: getLose}));
             dispatch(game_over({gameOver: true, guessedWord: false}))
             return;
         }

@@ -72,7 +72,8 @@ function GameOver() {
                 
             </div>
             <h3> {
-                selector.game.guessedWord ? localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].won1 : dictionary[selector.site.language].lose1 
+                selector.game.guessedWord ? localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].won1 
+                : <span>{localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].lose1} <hr></hr> {dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span>
             } </h3>
             {
             selector.game.guessedWord && ( <>
@@ -81,10 +82,11 @@ function GameOver() {
                 <Pyramid val={percent}/>
                 <br></br>
                 <span style={{letterSpacing:1.4}} id="percent">%{percent} { dictionary[selector.site.language].percent }</span>
-                    <br></br><br></br>
+                    <br></br><hr></hr>
                     <span>{dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span> </h3>
                     </>
                 )
+            
             
         }
         </div>

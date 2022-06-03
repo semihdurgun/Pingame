@@ -406,6 +406,9 @@ form{
   header h1{
     font-size: 30px;
   }
+  hr{
+    width: 75%;
+  }
 }
 @media only screen and (max-height: 420px) and (min-width: 600px) {
   .board{
@@ -445,6 +448,9 @@ form{
   h3 {
     display: block;
     font-size: 0.87em;
+  }
+  hr{
+    width: 75%;
   }
 }
 @media only screen and (max-height: 768px) and (max-width: 600px) {
@@ -520,5 +526,8 @@ form{
   }
   #copy{
     margin-bottom: 70px;
+  }
+  hr{
+    width: 75%;
   }
 }

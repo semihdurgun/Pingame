@@ -6,6 +6,7 @@ import dictionary from "../dictionary.json";
 import {collection, addDoc, Timestamp, getDocs} from "firebase/firestore";
 import db from "../Config";
 import Confetti from 'react-confetti'
+import Pyramid from "./Pyramid";
 
 function GameOver() {
     const selector = useSelector(state=>state)
@@ -71,18 +72,17 @@ function GameOver() {
                 
             </div>
             <h3> {
-                selector.game.guessedWord ? dictionary[selector.site.language].won1 : dictionary[selector.site.language].lose1 
+                selector.game.guessedWord ? localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].won1 : dictionary[selector.site.language].lose1 
             } </h3>
-            <h2 disabled >{dictionary[selector.site.language].search + selector.game.correctNumber}</h2>
             {
             selector.game.guessedWord && ( <>
             <Confetti gravity={0.07}/>
                 <h3> 
-                <br></br> <span style={{letterSpacing:1.4}} id="percent">%{percent} { dictionary[selector.site.language].percent }</span>
-                    <br></br><br></br> 
-                    { dictionary[selector.site.language].attempt }
-                    { selector.game.attempt } <br></br><br></br>
-                    <span style={{color:"red"}}>{ dictionary[selector.site.language].point } { point } </span> </h3>
+                <Pyramid val={percent}/>
+                <br></br>
+                <span style={{letterSpacing:1.4}} id="percent">%{percent} { dictionary[selector.site.language].percent }</span>
+                    <br></br><br></br>
+                    <span>{dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span> </h3>
                     </>
                 )
             

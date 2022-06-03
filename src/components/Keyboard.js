@@ -28,8 +28,10 @@ function Keyboard() {
     const Toast = Swal.mixin({
         toast: true,
         position: 'center',
+        background: 'gray',
+        color: 'white',
         showConfirmButton: false,
-        timer: 4000,
+        timer: 2300,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)

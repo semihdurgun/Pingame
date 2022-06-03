@@ -6,7 +6,8 @@ function Letter({val, pos}) {
     const letter = selector.game.board2[val][pos];
     return (
         <div className='letter'>
-            {letter}</div>
+            {letter}
+        </div>
     )
 }
 

@@ -319,6 +319,15 @@ form{
 .minus:hover{
   background-color: #c5ad42;
 }
+
+.circle{
+  width: 20px;
+  height: 20px;
+  border: 3px solid #63a75c;
+  border-radius: 100%;
+  margin: 0 2px;
+  display: inline-block;
+}
 #percent{
   color: #63a75c;
   animation: SlidePercent 2000ms linear;
@@ -462,17 +471,17 @@ form{
     margin-top: 20px;
   }
   .content div{
-    width: 2.8em;
-    height: 2.8em;
+    width: 2.4em;
+    height: 2.4em;
   }
   .content div span:nth-child(1){
-    line-height: 2.8em;
+    line-height: 2.4em;
     font-size: 1em;
   }
   .gameOver{
     width: 100%;
     margin-left: 0;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .minus{
     width: 6px;
@@ -487,19 +496,29 @@ form{
   h3 {
     display: block;
     font-size: 0.87em;
-    margin-block-start: 0.5em;
-    margin-block-end: 0em;
+    margin-block-start: 0em;
+    margin-block-end: 0.5em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
   }
   h2 {
     display: block;
     font-size: 1.2em;
-    margin-block-start: 0.5em;
-    margin-block-end: 0em;
+    margin-block-start: 0em;
+    margin-block-end: 0.5em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
-}
-
+  }
+  .circle{
+    width: 10px;
+    height: 10px;
+    border: 2px solid #63a75c;
+  }
+  svg{
+    height: 15px;
+  }
+  #copy{
+    margin-bottom: 70px;
+  }
 }

@@ -92,6 +92,7 @@ header h1 {
   height: 100%;
   display: flex;
   flex-direction: column;
+  line-height: 20px;
 }
 .dropdown-content {
   display: none;
@@ -332,6 +333,23 @@ form{
   color: #63a75c;
   animation: SlidePercent 2000ms linear;
 }
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(250, 233, 236);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
 @keyframes SlidePercent {
   0%  {opacity:0%; color: #ffffff; }
   25%  {opacity:40%; color: #ffffff; }

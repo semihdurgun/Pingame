@@ -27,7 +27,7 @@ function Header(is_nav) {
             <a style={{display:"none"}}>{selector.site.language}</a>
         </div>
         <div>
-            <h1>p-i-n-g-a-m-e</h1>
+            <h1>numberland</h1>
         </div>
         <div>
          { is_nav.value == "home" &&

@@ -15,7 +15,7 @@ function App() {
     const selector = useSelector(state=>state)
     const dispatch = useDispatch()
 
-    document.title = "p-i-n-g-a-m-e";
+    document.title = "numberland";
 
     const tokenString = localStorage.getItem('nickname');
 

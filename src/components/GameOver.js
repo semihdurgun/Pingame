@@ -11,7 +11,7 @@ import Pyramid from "./Pyramid";
 function GameOver() {
     const selector = useSelector(state=>state)
     const [percent,setPercent] = useState('')
-    var point = 80  - ((selector.game.attempt-1) * 18) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*3;
+    var point = 80  - ((selector.game.attempt-1) * 17) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*3;
     if (point<0) {point=0};
 
     useEffect(() => {
@@ -39,7 +39,7 @@ function GameOver() {
             console.log("Document written with ID: ", docRef.id);
             const querySnapshot = await getDocs(collection(db, "scoreboard")).then("thatshokey.");
             querySnapshot.forEach((doc) => {
-                if (point>doc.data().point){
+                if (point>=doc.data().point){
                     sayac += 1
                 }
               });

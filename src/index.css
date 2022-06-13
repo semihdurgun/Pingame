@@ -257,7 +257,7 @@ form{
   color: #121212
 }
 /* gameOver */
-.gameOver { text-align: center; width: 340px; color: #FFFFFF; margin-left: 5%; }
+.gameOver { text-align: center; width: 375px; color: #FFFFFF; margin-left: 5%; }
 
 /* numpad */
 .keyboard { text-align: center; width: 300px; color: #FFFFFF; margin-left: 5%;}

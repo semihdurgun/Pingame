@@ -15,10 +15,13 @@ function GameOver() {
     if (point<0) {point=0};
 
     useEffect(() => {
-        add_database(point)
-    }, []);
+        // componentWillUnmount
+        return () => {
+            add_database(point)
+        }
+      }, []);
 
-    let copiedText = " p-i-n-g-a-m-e " + (selector.game.attempt) + "/8 Point: " + point + "  %"+ percent +"\n\n";    
+    let copiedText = " numberland " + (selector.game.attempt) + "/8 Point: " + point + "  %"+ percent +"\n\n";    
     for (let i = 0; i < selector.game.hint.length; i++) {
         for (let j = 0; j < selector.game.hint[i].length; j++) {
             if (selector.game.hint[i][j] === "+"){
@@ -36,8 +39,8 @@ function GameOver() {
                 nickname: localStorage.getItem('nickname'), 
                 point: point,
                 date: Timestamp.now()});
-            console.log("Document written with ID: ", docRef.id);
-            const querySnapshot = await getDocs(collection(db, "scoreboard")).then("thatshokey.");
+            
+            const querySnapshot = await getDocs(collection(db, "scoreboard")).then("OK");
             querySnapshot.forEach((doc) => {
                 if (point>=doc.data().point){
                     sayac += 1
@@ -51,7 +54,7 @@ function GameOver() {
     }
 
     function copied() {
-        navigator.clipboard.writeText(copiedText.trimEnd()+ "\n\n https://p-i-n-g-a-m-e.web.app/")
+        navigator.clipboard.writeText(copiedText.trimEnd()+ "\n\n " + window.location.href)
         var x = document.getElementById("copy")
         x.style.display = "block";
         setTimeout(()=>{

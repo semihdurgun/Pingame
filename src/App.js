@@ -15,10 +15,10 @@ function App() {
     const selector = useSelector(state=>state)
     const dispatch = useDispatch()
 
-    document.title = "numberland";
-
     const tokenString = localStorage.getItem('nickname');
-
+    useEffect(() => {
+      }, []);
+      
     useEffect(() => {
         dispatch(correct_number(generateNumber(selector.game.guessedNumberCount)))
         if (localStorage.getItem("language") !== null){

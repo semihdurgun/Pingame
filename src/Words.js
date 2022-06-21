@@ -4,6 +4,6 @@ export const generateNumber = (digit) => {
         var r = Math.floor(Math.random() * 9) + 1;
         if(arr.indexOf(r) === -1) arr.push(r);
     }
-    console.log(arr.join(""));
+    console.log(arr)
     return arr.join("");
 };

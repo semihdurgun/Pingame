@@ -48,7 +48,7 @@ function Keyboard() {
         for (let i = 0; i < selector.game.guessedNumberCount; i++) {
             currNumber += selector.game.board2[selector.game.attempt][i];
         }
-        console.log(currNumber)    
+            
         if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length !== selector.game.guessedNumberCount) {
             Toast.fire({icon: 'warning', title: dictionary[selector.site.language].toast, html: dictionary[selector.site.language].toast2})
             return;
@@ -111,7 +111,7 @@ function Keyboard() {
             return innerArray
         })
         dispatch(board2(newBoard2))
-        console.log(newBoard2) 
+        
         dispatch(curr_attempt({
             attempt: selector.game.attempt,
             letter: selector.game.letter + 1
@@ -136,7 +136,7 @@ function Keyboard() {
             });
 
         }
-    }, [selector.game.letter,selector.game.attempt]);
+    }, [selector.game.letter,selector.game.attempt,selector.game.gameOver]);
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyboard);
@@ -165,9 +165,9 @@ function Keyboard() {
                 <div className="content">
 
                     {
-                    keys1.map((key) => {
+                    keys1.map((key, i) => {
                         return (
-                            <div onClick={() => selectLetter(key)}>
+                            <div key={i} onClick={() => selectLetter(key)}>
                             <span> {
                                 (() => {
                                     switch (key) {

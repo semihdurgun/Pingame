@@ -32,12 +32,14 @@ function App() {
             <Header value="home" />
             <div className="game">
                 <div className="game1">
-                    <Board/> {
-                    selector.game.hint && <Hint/>  } 
+                    <Board/> 
+                    <Hint/> 
                 </div>
                 {
                     selector.game.gameOver ? <GameOver/>: <Keyboard/>
                 } 
+      
+                
             </div>
         </div>
     );

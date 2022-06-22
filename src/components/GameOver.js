@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { IoIosRefresh } from 'react-icons/io';
-import { BsFillShareFill } from 'react-icons/bs';
+import { FiCopy } from 'react-icons/fi';
+import { BsFillShareFill, BsReverseLayoutTextWindowReverse } from 'react-icons/bs';
 import { useSelector } from "react-redux";
 import dictionary from "../dictionary.json";
 import {collection, addDoc, Timestamp, getDocs} from "firebase/firestore";
@@ -11,14 +12,14 @@ import Pyramid from "./Pyramid";
 function GameOver() {
     const selector = useSelector(state=>state)
     const [percent,setPercent] = useState('')
-    var point = 80  - ((selector.game.attempt-1) * 17) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*3;
+    var point = selector.game.timer_end?0:80  - ((selector.game.attempt-1) * 17) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*3;
     if (point<0) {point=0};
     useEffect(() => {
         search_database()
-        add_database(point)
+        if (point>0) add_database(point)
       }, []);
 
-    let copiedText = " numberland " + (selector.game.attempt) + "/8 Point: " + point + "  %"+ percent +"\n\n";    
+    let copiedText = "https://twitter.com/compose/tweet?text="+" numberland " + (selector.game.attempt) + "/8 Point: " + point + " %25"+ percent +"%0A%0A";    
     for (let i = 0; i < selector.game.hint.length; i++) {
         for (let j = 0; j < selector.game.hint[i].length; j++) {
             if (selector.game.hint[i][j] === "+"){
@@ -27,7 +28,7 @@ function GameOver() {
                 copiedText += "🟡";
             }
         }
-        copiedText += "\n";
+        copiedText += "%0A";
     }
     const search_database = async ()=>{
         var sayac = 0
@@ -35,18 +36,20 @@ function GameOver() {
         try{
             const querySnapshot = await getDocs(collection(db, "scoreboard")).then("OK");
             querySnapshot.forEach((doc) => {
-                if (point>=doc.data().point){
+                if ((point>=doc.data().point)){
                     sayac += 1
                 }
               });
             var per = ((sayac/querySnapshot.size).toFixed(4))*100
-            setPercent(per.toFixed(2)) 
+            if(point>0) setPercent(per.toFixed(2))
+            else setPercent(0)
         }
         catch(e){
             console.error("Error searching document: ", e);
         }
       
     }
+
     const add_database = async (point) => {
         try {
             const docRef = await addDoc(collection(db, "scoreboard"), {
@@ -60,30 +63,34 @@ function GameOver() {
     }
 
     function copied() {
-        navigator.clipboard.writeText(copiedText.trimEnd()+ "\n\n " + window.location.href)
+        navigator.clipboard.writeText(copiedText.replaceAll('%0A','\n').replace('25','').replace('https://twitter.com/compose/tweet?text=','').trimEnd()+ "\n\n " + window.location.href)
         var x = document.getElementById("copy")
         x.style.display = "block";
         setTimeout(()=>{
             x.style.display = "none";
         }, 3000)
     }
+    /*const trim = (str, chars) => str.split(chars).filter(Boolean).join(chars);*/
 
     return (
         <div className="gameOver">
             <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}} className="content">
-                <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() => window.location.reload(false)}>
+                <a style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() => window.location.reload(false)}>
                     <IoIosRefresh size={25}/>
-                </div>
-                <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() => copied() }>
-                    <BsFillShareFill size={20} />
+                </a>
+                <a style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={copied}>
+                    <FiCopy size={20} />
                     <span id="copy">{dictionary[selector.site.language].copy}</span>
-                </div>
-                
+                </a>
+                <a href={copiedText + '%0A ' + window.location.href } target='_blank' style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                    <BsFillShareFill size={20} />
+                </a>
             </div>
             <h3> {
                 selector.game.guessedWord ? localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].won1 
                 : <span>{localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].lose1} <hr></hr> {dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span>
-            } </h3>
+            } 
+            </h3>
             {
             selector.game.guessedWord && ( <>
             <Confetti gravity={0.07}/>

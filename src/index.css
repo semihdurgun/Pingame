@@ -258,13 +258,18 @@ form{
 }
 /* gameOver */
 .gameOver { text-align: center; width: 375px; color: #FFFFFF; margin-left: 5%; }
-
+/* timer */
+.timer{
+  font-size: 32px;
+  position: relative;
+  bottom: 60px;
+}
 /* numpad */
-.keyboard { text-align: center; width: 300px; color: #FFFFFF; margin-left: 5%;}
+.keyboard { text-align: center; width: 300px; color: #FFFFFF; margin-left: 5%; display: flex; flex-direction: column; flex-wrap: wrap;}
 
 .content {display:grid;grid-template-columns: repeat(3, 100px); margin: 0 8%; justify-items: center; }
 
-.content div { margin-bottom:6px;width: 4em; height: 4em; border: 1px solid #FFFFFF; border-radius: 70px; cursor: pointer; }
+.content div, .content a { margin-bottom:6px;width: 4em; height: 4em; border: 1px solid #FFFFFF; border-radius: 70px; cursor: pointer; }
 
 .content div span:nth-child(1)
 { 
@@ -272,12 +277,10 @@ form{
   line-height: 2.4em;
 }
 
-.content div:hover { background-color: #ffffff; color: #000000;
+.content div:hover, .content a:hover { background-color: #ffffff; color: #000000;
 }
 
-.content div:nth-child(11){
-  pointer-events: none;
-}
+
 .content div:nth-child(10) span{
   line-height: 2.6em;
 }
@@ -442,11 +445,11 @@ a:hover {
   .keyboard{
     margin-left: 0;
   }
-  .content div{
+  .content div, .content a{
     width: 3em;
     height: 3em;
   }
-  .content div span:nth-child(1) {
+  .content div span:nth-child(1), .content a span:nth-child(1)  {
     font-size: 1.3em;
   }
   .letter{
@@ -493,11 +496,11 @@ a:hover {
     margin-left: 0;
     margin-top: 20px;
   }
-  .content div{
+  .content div, .content a{
     width: 2.4em;
     height: 2.4em;
   }
-  .content div span:nth-child(1){
+  .content div span:nth-child(1), .content a span:nth-child(1){
     line-height: 2.4em;
     font-size: 1em;
   }

@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {AiOutlineEnter} from 'react-icons/ai';
 import {BsBackspace} from 'react-icons/bs';
 import { curr_attempt, board2, game_over, hint } from "../stores/GameSlicer";
 import Swal from "sweetalert2";
 import dictionary from "../dictionary.json";
+import Timer from "./Timer";
 
 function Keyboard() {
     const keys1 = [
@@ -18,13 +19,13 @@ function Keyboard() {
         "8",
         "9",
         "DLT",
-        "",
+        "0",
         "ENTER"
     ];
     
     const selector = useSelector(state=>state)
     const dispatch = useDispatch()
-   
+
     const Toast = Swal.mixin({
         toast: true,
         position: 'center',
@@ -48,8 +49,8 @@ function Keyboard() {
         for (let i = 0; i < selector.game.guessedNumberCount; i++) {
             currNumber += selector.game.board2[selector.game.attempt][i];
         }
-            
-        if (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length !== selector.game.guessedNumberCount) {
+    
+        if ((currNumber.split("")[0] == 0) || (currNumber.split("").filter((v, i, a) => a.indexOf(v) === i).length !== selector.game.guessedNumberCount)) {
             Toast.fire({icon: 'warning', title: dictionary[selector.site.language].toast, html: dictionary[selector.site.language].toast2})
             return;
         }
@@ -158,12 +159,13 @@ function Keyboard() {
             onSelectLetter(keyVal);
         }
     };
-
+ 
     return (
-        <div className="keyboard"
-            onKeyDown={handleKeyboard}>
+        <div className="keyboard" onKeyDown={handleKeyboard}>
+                <div id="timer" className="timer">
+                    <Timer />
+                </div>  
                 <div className="content">
-
                     {
                     keys1.map((key, i) => {
                         return (
@@ -183,8 +185,8 @@ function Keyboard() {
                         </div>);
                     })
                     }
-
-            </div>
+                
+                </div>
         </div>
     );
 }

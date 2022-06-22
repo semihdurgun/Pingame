@@ -392,7 +392,8 @@ a:hover {
   }
   .hintboard {
     height: 400px;
-  }
+  }  
+
   .hint{
     width: 44px;
     height: 44px;
@@ -400,12 +401,15 @@ a:hover {
   .keyboard{
     width: 100%;
     margin-left: 0;
-    margin-top: 35px;
+    margin-top: 25px;
+  }
+  .timer{
+    bottom: 15px;
   }
   .gameOver{
     width: 100%;
     margin-left: 0;
-    margin-top: 35px;
+    margin-top: 10px;
   }
   .content{
     grid-template-columns: repeat(3, 33%);
@@ -429,12 +433,16 @@ a:hover {
   hr{
     width: 75%;
   }
+  .h3{
+    margin: 0px;
+  }
 }
 @media only screen and (max-height: 420px) and (min-width: 600px) {
   .board{
     width: 240px;
     height: 280px;
   }
+
   .hintboard{
     height: 280px;
   }
@@ -444,6 +452,9 @@ a:hover {
   }
   .keyboard{
     margin-left: 0;
+  }
+  .timer{
+    bottom: 15px;
   }
   .content div, .content a{
     width: 3em;
@@ -494,8 +505,14 @@ a:hover {
   .keyboard{
     width: 100%;
     margin-left: 0;
-    margin-top: 20px;
+    margin-top: 10px;
   }
+  .timer{
+    font-size: 20px;
+    bottom: 7px;
+    padding: 0px;
+  }
+
   .content div, .content a{
     width: 2.4em;
     height: 2.4em;

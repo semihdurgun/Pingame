@@ -12,8 +12,10 @@ import Pyramid from "./Pyramid";
 function GameOver() {
     const selector = useSelector(state=>state)
     const [percent,setPercent] = useState('')
-    var point = selector.game.timer_end?0:80  - ((selector.game.attempt-1) * 17) + (selector.game.hint.join('').split('+').length - 1)*5 + (selector.game.hint.join('').split('-').length - 1)*3;
+    var point = selector.game.timer_end?0:80  - ((selector.game.attempt-1) * 18) + (selector.game.hint.join('').split('+').length - 1)*4 + (selector.game.hint.join('').split('-').length - 1)*2;
+    point += Math.floor((selector.game.timer_end_time)/15)
     if (point<0) {point=0};
+    
     useEffect(() => {
         search_database()
         if (point>0) add_database(point)
@@ -63,7 +65,7 @@ function GameOver() {
     }
 
     function copied() {
-        navigator.clipboard.writeText(copiedText.replaceAll('%0A','\n').replace('25','').replace('https://twitter.com/compose/tweet?text=','').trimEnd()+ "\n\n " + window.location.href)
+        navigator.clipboard.writeText(copiedText.replaceAll('%0A','\n').replace('25','').replace('https://twitter.com/compose/tweet?text=','').trimEnd()+ "\n\n " + window.location.href+ "\n @numberlandGame")
         var x = document.getElementById("copy")
         x.style.display = "block";
         setTimeout(()=>{
@@ -74,7 +76,7 @@ function GameOver() {
 
     return (
         <div className="gameOver">
-            <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}} className="content">
+            <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center",marginTop:10}} className="content">
                 <a style={{display:"flex",justifyContent:"center",alignItems:"center"}} onClick={() => window.location.reload(false)}>
                     <IoIosRefresh size={25}/>
                 </a>
@@ -82,29 +84,30 @@ function GameOver() {
                     <FiCopy size={20} />
                     <span id="copy">{dictionary[selector.site.language].copy}</span>
                 </a>
-                <a href={copiedText + '%0A ' + window.location.href } target='_blank' style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                <a href={copiedText + '%0A ' + window.location.href+ "%0A @numberlandGame" } target='_blank' style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                     <BsFillShareFill size={20} />
                 </a>
             </div>
-            <h3> {
-                selector.game.guessedWord ? localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].won1 
-                : <span>{localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].lose1} <hr></hr> {dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span>
-            } 
-            </h3>
-            {
-            selector.game.guessedWord && ( <>
-            <Confetti gravity={0.07}/>
-                <h3> 
-                <Pyramid val={percent}/>
-                <br></br>
-                <span style={{letterSpacing:1.4}} id="percent">%{percent} { dictionary[selector.site.language].percent }</span>
-                    <br></br><hr></hr>
-                    <span>{dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span> </h3>
+            <div >
+                <h3 className="h3"> {
+                    selector.game.guessedWord ? localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].won1 
+                    : <span>{localStorage.getItem("nickname").toUpperCase() + dictionary[selector.site.language].lose1} <hr></hr> {dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span>
+                } 
+                </h3>
+                {
+                selector.game.guessedWord && ( <>
+                <Confetti gravity={0.07}/>
+                    <h3> 
+                    <Pyramid val={percent}/>
+                    <br></br>
+                    <span style={{letterSpacing:1.4}} id="percent">%{percent} { dictionary[selector.site.language].percent }</span>
+                        <br></br><hr></hr>
+                        <span>{dictionary[selector.site.language].search + selector.game.correctNumber}<span style={{color:"red"}}> {dictionary[selector.site.language].point } { point } </span></span> 
+                        </h3>
                     </>
-                )
-            
-            
-        }
+                    )
+                }
+            </div>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { game_over } from "../stores/GameSlicer";
+import { game_over, timer } from "../stores/GameSlicer";
 
 function Timer() {
 
@@ -12,8 +12,10 @@ function Timer() {
             setCountDown(countDown - 1)
         }, 1000)
         if(countDown === 0) {
-            dispatch(game_over({gameOver: true, guessedWord: false, timer_end:true}))
+            dispatch(game_over({gameOver: true, guessedWord: false}))
+            dispatch(timer({timer_end:true, timer_end_time:0}))
         }
+        dispatch(timer({timer_end:false, timer_end_time:countDown}))
         return () => clearInterval(interval)
         
     }, [countDown])
@@ -30,15 +32,15 @@ function Timer() {
         return minutes +":" +  seconds;
       };
 
-    return (
+    return (<>
+        <link rel="prefetch" href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'/>
         <div style={{fontFamily: 'Orbitron'}}>
             {countDown>=60 && findTimeString(countDown)}
             {(countDown<60) && (countDown>15)  && <span style={{color:'yellow', fontFamily: 'Orbitron'}}>{findTimeString(countDown)}</span>}
             {countDown<=15 && <span style={{color:'red', fontFamily: 'Orbitron'}}>{findTimeString(countDown)}</span>}
-            <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'/>
         
         </div>
-        
+        </>
     )
 }
 

@@ -60,7 +60,7 @@ var hintDefault = [
   "",
   ""
   ]
-const initialState = { guessedNumberCount: 4, attempt: 0, letter: 0, board2: boardDefault, hint: hintDefault, correctNumber: "", gameOver: false, guessedWord: false, timer_end:false }
+const initialState = { guessedNumberCount: 4, attempt: 0, letter: 0, board2: boardDefault, hint: hintDefault, correctNumber: "", gameOver: false, guessedWord: false, timer_end:false, timer_end_time:500 }
 
 const GameSlicer = createSlice({
   name: 'GameOver',
@@ -79,7 +79,10 @@ const GameSlicer = createSlice({
     game_over(state, action) {
       state.gameOver = action.payload.gameOver
       state.guessedWord = action.payload.guessedWord
+    },
+    timer(state, action) {
       state.timer_end = action.payload.timer_end
+      state.timer_end_time = action.payload.timer_end_time
     },
     hint(state, action) {
       state.hint = action.payload
@@ -90,5 +93,5 @@ const GameSlicer = createSlice({
   },
 })
 
-export const { curr_attempt, correct_number, board2, game_over, hint } = GameSlicer.actions
+export const { curr_attempt, correct_number, board2, game_over, timer, hint } = GameSlicer.actions
 export default GameSlicer.reducer

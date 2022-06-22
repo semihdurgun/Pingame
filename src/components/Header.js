@@ -33,7 +33,7 @@ function Header(is_nav) {
         <div>
             <span style={{display:"none"}}>{selector.site.language}</span>
             <a href='/'>
-                <img style={{height:35,width:35,marginLeft:15}} src='/favicon.png' alt='logo'></img>
+                <img style={{height:35,width:35,marginLeft:15}} src='/favicon2.png' alt='logo'></img>
             </a>
         </div>
         <div>

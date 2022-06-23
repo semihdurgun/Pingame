@@ -74,7 +74,7 @@ function Keyboard() {
             dispatch(game_over({gameOver: true, guessedWord: true}))
             return;
         }
-        if (selector.game.attempt === 7) {
+        if (selector.game.attempt === 9) {
             var getLose = JSON.parse(localStorage.getItem('game'))["lose"];
             getLose += 1;
             localStorage.setItem('game', JSON.stringify({won: JSON.parse(localStorage.getItem('game'))["won"], lose: getLose}));

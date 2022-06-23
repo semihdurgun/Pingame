@@ -7,6 +7,9 @@
   -o-user-select: none;
   user-select: none;
 }
+.font-link{
+  font-family: 'Orbitron';
+}
 input, input:before, input:after {
   -webkit-user-select: initial;
   -khtml-user-select: initial;
@@ -14,15 +17,12 @@ input, input:before, input:after {
   -ms-user-select: initial;
   user-select: initial;
  } 
-.App {
-    text-align: center;
-    background-color: #121212;
-    width: 100vw;
-    height: 100vh;
-    color: white;
-  }
-
+.App{
+  color: white;
+  text-align: center;
+}
 body {
+  background-color: #121212;
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -136,8 +136,8 @@ header h1 {
 }
 
 .board {
-  width: 300px;
-  height: 500px;
+  width: 350px;
+  height: 600px;
   display: flex;
   flex-direction: column;
 }
@@ -224,6 +224,7 @@ form{
 }
 .login-input {
   box-sizing: border-box;
+  text-align: center;
   width: 100px;
   height: 30px;
   border: 2px solid currentColor;
@@ -265,7 +266,7 @@ form{
   bottom: 60px;
 }
 /* numpad */
-.keyboard { text-align: center; width: 300px; color: #FFFFFF; margin-left: 5%; display: flex; flex-direction: column; flex-wrap: wrap;}
+.keyboard { background-color: #121212; text-align: center; width: 300px; color: #FFFFFF; margin-left: 5%; display: flex; flex-direction: column; flex-wrap: wrap;}
 
 .content {display:grid;grid-template-columns: repeat(3, 100px); margin: 0 8%; justify-items: center; }
 
@@ -277,9 +278,12 @@ form{
   line-height: 2.4em;
 }
 
-.content div:hover, .content a:hover { background-color: #ffffff; color: #000000;
+.content div:hover, .content a:hover { background-color: #ffffff; color: #000000; 
 }
 
+.content a:hover #copy, .content a:hover #share, .content a:hover #refresh {
+  display: block;
+}
 
 .content div:nth-child(10) span{
   line-height: 2.6em;
@@ -288,15 +292,15 @@ form{
 .hint {
   border-radius: 100%;
   border: 1px solid grey;
-  width: 56.5px;
-  height: 56.5px;
+  width: 54.5px;
+  height: 54.5px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 5px;
 }
 .hintboard{
-  height: 500px;
+  height: 600px;
   border: 0.5px solid gray;
   border-radius: 10px;
   margin-left: 3%;
@@ -360,7 +364,7 @@ a:hover {
   100%  {opacity:100%; color: #63a75c;}
 
 }
-#copy{
+#copy, #share, #refresh{
   display:none;
   color:white;
   opacity: 0%;
@@ -387,21 +391,27 @@ a:hover {
     justify-content: center;
   }
   .board {
-    width: 250px;
-    height: 400px;
+    width: 270px;
+    height: 425px;
   }
   .hintboard {
-    height: 400px;
+    height: 425px;
   }  
-
   .hint{
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 37px;
   } 
   .keyboard{
     width: 100%;
     margin-left: 0;
     margin-top: 25px;
+  }
+  .content div, .content a{
+    width: 3.2em;
+    height: 3.2em;
+  }
+  .content div span:nth-child(1), .content a span:nth-child(1)  {
+    font-size: 1.3em;
   }
   .timer{
     bottom: 15px;
@@ -433,22 +443,22 @@ a:hover {
   hr{
     width: 75%;
   }
-  .h3{
+  h3{
     margin: 0px;
   }
 }
 @media only screen and (max-height: 420px) and (min-width: 600px) {
   .board{
     width: 240px;
-    height: 280px;
+    height: 300px;
   }
 
   .hintboard{
-    height: 280px;
+    height: 300px;
   }
   .hint{
     width: 29px;
-    height: 29px;
+    height: 24.5px;
   }
   .keyboard{
     margin-left: 0;
@@ -487,17 +497,17 @@ a:hover {
 @media only screen and (max-height: 768px) and (max-width: 600px) {
   .board{
     width: 250px;
-    height: 350px;
+    height: 355px;
   }
   .row {
     margin: 2px;
   }
   .hintboard{
-    height: 350px;
+    height: 355px;
   }
   .hint{
-    width: 38px;
-    height: 38px;
+    width: 33px;
+    height: 29.5px;
   }
   .letter{
     font-size: 20px;
@@ -561,7 +571,7 @@ a:hover {
   svg{
     height: 15px;
   }
-  #copy{
+  #copy, #share, #refresh{
     margin-bottom: 70px;
   }
   hr{

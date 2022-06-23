@@ -44,10 +44,22 @@ const boardDefault = [
       "",
   ],
   [
-      "",
-      "",
-      "",
-      "",
+    "",
+    "",
+    "",
+    "",
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
   ],
 ];
 var hintDefault = [
@@ -58,9 +70,11 @@ var hintDefault = [
   "",
   "",
   "",
+  "",
+  "",
   ""
   ]
-const initialState = { guessedNumberCount: 4, attempt: 0, letter: 0, board2: boardDefault, hint: hintDefault, correctNumber: "", gameOver: false, guessedWord: false, timer_end:false, timer_end_time:500 }
+const initialState = { guessedNumberCount: 4, attempt: 0, letter: 0, board2: boardDefault, hint: hintDefault, correctNumber: "", gameOver: false, guessedWord: false, timer_end:false, timer_end_time:300 }
 
 const GameSlicer = createSlice({
   name: 'GameOver',

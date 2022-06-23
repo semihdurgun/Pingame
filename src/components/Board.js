@@ -77,6 +77,24 @@ function Board() {
                     val={7}/>
                 <Letter pos={3}
                     val={7}/></div>
+            <div className='row'>
+                <Letter pos={0}
+                    val={8}/>
+                <Letter pos={1}
+                    val={8}/>
+                <Letter pos={2}
+                    val={8}/>
+                <Letter pos={3}
+                    val={8}/></div>
+            <div className='row'>
+                <Letter pos={0}
+                    val={9}/>
+                <Letter pos={1}
+                    val={9}/>
+                <Letter pos={2}
+                    val={9}/>
+                <Letter pos={3}
+                    val={9}/></div>
         </div>
     )
 }

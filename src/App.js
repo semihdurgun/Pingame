@@ -8,16 +8,14 @@ import Hint from "./components/Hint";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { correct_number } from "./stores/GameSlicer";
+import { correct_number, timer } from "./stores/GameSlicer";
 import { language } from "./stores/Site";
 
 function App() {
     const selector = useSelector(state=>state)
     const dispatch = useDispatch()
 
-    const tokenString = localStorage.getItem('nickname');
-    useEffect(() => {
-      }, []);
+    const is_login = localStorage.getItem('nickname');
       
     useEffect(() => {
         dispatch(correct_number(generateNumber(selector.game.guessedNumberCount)))
@@ -25,10 +23,10 @@ function App() {
             dispatch(language(localStorage.getItem("language")))
         }    
     }, []); 
-
+    
     return (
         <div className="App">
-            {  ! tokenString && <Login/>   }
+            {  ! is_login && <Login/>   }
             <Header value="home" />
             <div className="game">
                 <div className="game1">

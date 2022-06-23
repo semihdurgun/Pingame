@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Header from './Header';
 import dictionary from "../dictionary.json";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { timer } from "../stores/GameSlicer";
 
 function Login() {
     const selector = useSelector(state=>state)
+    const dispatch = useDispatch()
     const [nickname,setNickname] = useState('')    
-
 
     const deneme = async (e) => {
         e.preventDefault();
@@ -22,7 +23,7 @@ function Login() {
         removed.classList.add("hidden");
         localStorage.setItem('game', JSON.stringify({won: 0, lose: 0}));
         localStorage.setItem('nickname', nickname);
-
+        dispatch(timer({timer_end:false, timer_end_time:300}))
     }
     return (
         <div id="box" className='login'>

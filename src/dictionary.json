@@ -9,10 +9,12 @@
           "toast2": "1- The number entered cannot be 0 at the beginning.<hr>2- You cannot enter the same number again.<hr>",
           "percent":"You beat players!",
           "how": "How to play",
-          "howTo": "<p>Find the <strong>Number</strong> in 8 tries.</p> <p>Each guess must be a 4-digit number. You cannot enter the same number again.</p> <p>You can play with numpad or keyboard.</p><p> After each guess, the color of the right circle changes according to your guess</p><hr></hr><h3>Examples</h3><div><div style='display:inline-flex' class='hint'><span class='minus'></span><span class='minus'></span></div><span> The two numbers are wrong.</span></div><div><div style='display:inline-flex' class='hint'><span class='plus' ></span><span class='minus'></span></div><span > A number's place is correct, a number's place is wrong.</span></div><div><div style=' display:inline-flex' class='hint'><span class='plus'></span><span class='plus'></span><span class='plus'></span></div><span> The three numbers are correct.</span></div><br><br><br><br><span style='color:gray'>2022, Made by Wonception.</span>",
-          "copy": "Copied",
+          "howTo": "<p>Find the <strong>Number</strong> in 10 tries.</p> <p>Each guess must be a 4-digit number. You cannot enter the same number again.</p> <p>You can play with numpad or keyboard.</p><p> After each guess, the color of the right circle changes according to your guess</p><hr></hr><h3>Examples</h3><div><div style='display:inline-flex' class='hint'><span class='minus'></span><span class='minus'></span></div><span> 2 numbers are wrong place.</span></div><div><div style='display:inline-flex' class='hint'><span class='plus' ></span><span class='minus'></span></div><span > 1 number in the right place, 1 number in the wrong place.</span></div><div><div style=' display:inline-flex' class='hint'><span class='plus'></span><span class='plus'></span><span class='plus'></span></div><span> 3 numbers in correct place.</span></div><div><div style='display:inline-flex' class='hint'><span class='minus'></span><span class='plus'></span><span class='minus'></span><span class='plus'></span></div><span> 2 numbers in correct place, 2 numbers in wrong place.</span></div><br><br><br><br><span style='color:gray'>2022, Made by Wonception.</span>",
           "contact": "Contact us",
-          "contactUs": "<p>You can forward your wishes, requests and suggestions to us through the following channels.</p>" 
+          "contactUs": "<p>You can forward your wishes, requests and suggestions to us through the following channels.</p>",
+          "refresh": "Refresh",
+          "share": "Share",
+          "copy": "Copy"
         },
   "tr": { "welcome": "Bana bir isim lazım..",
           "play": "Oyna",
@@ -25,9 +27,11 @@
           "toast2": "1- Girilen sayının başında 0 olamaz.<hr>2- Aynı sayıları tekrar giremezsiniz.<hr>",
           "percent":"Oyuncuları yendin!",
           "how": "Nasıl Oynanır",
-          "howTo": "<p><strong>Numara</strong>'yı 8 denemede bulun.</p> <p>Her tahmin 4 basamaklı bir sayı olmalıdır. Aynı sayıyı bir daha giremezsiniz.</p> <p>İster tuş takımı ister klavye ile oynayabilirsiniz.</p><p> Her tahminden sonra sağ taraftaki yuvarlağın içerisindeki renkler tahmininize göre değişecektir.</p><hr></hr><h3>Örnekler</h3><div><div style='display:inline-flex' class='hint'><span class='minus'></span><span class='minus'></span></div><span> İki sayının yeri yanlış.</span></div><div><div style='display:inline-flex' class='hint'><span class='plus'></span><span class='minus'></span></div><span > Bir sayının yeri doğru, bir sayının yeri yanlış.</span></div><div><div style='display:inline-flex' class='hint'><span class='plus'></span><span class='plus'></span><span class='plus'></span></div><span> Üç sayının yeri doğru.</span></div><br><br><br><br><span style='color:gray'>2022, Wonception tarafından yapılmıştır.</span>",
-          "copy": "Kopyalandı",
+          "howTo": "<p><strong>Numara</strong>'yı 10 denemede bulun.</p> <p>Her tahmin 4 basamaklı bir sayı olmalıdır. Aynı sayıyı bir daha giremezsiniz.</p> <p>İster tuş takımı ister klavye ile oynayabilirsiniz.</p><p> Her tahminden sonra sağ taraftaki yuvarlağın içerisindeki renkler tahmininize göre değişecektir.</p><hr></hr><h3>Örnekler</h3><div><div style='display:inline-flex' class='hint'><span class='minus'></span><span class='minus'></span></div><span> 2 sayının yeri yanlış.</span></div><div><div style='display:inline-flex' class='hint'><span class='plus'></span><span class='minus'></span></div><span > 1 sayının yeri doğru, 1 sayının yeri yanlış.</span></div><div><div style='display:inline-flex' class='hint'><span class='plus'></span><span class='plus'></span><span class='plus'></span></div><span> 3 sayının yeri doğru.</span></div><div><div style='display:inline-flex' class='hint'><span class='minus'></span><span class='plus'></span><span class='minus'></span><span class='plus'></span></div><span> 2 sayının yeri doğru, 2 sayının yeri yanlış.</span></div><br><br><br><br><span style='color:gray'>2022, Wonception tarafından yapılmıştır.</span>",
           "contact": "Bize ulaşın",
-          "contactUs": "<p>Dilek, istek ve önerilerinizi aşağıdaki kanallarımızdan bizlere iletebilirsiniz.</p>" 
-         }
+          "contactUs": "<p>Dilek, istek ve önerilerinizi aşağıdaki kanallarımızdan bizlere iletebilirsiniz.</p>",
+          "refresh": "Yenile",
+          "share": "Paylaş",
+          "copy": "Kopyala"
+        }
 }
